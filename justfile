@@ -9,4 +9,15 @@ deploy:
 [working-directory: './packages/robot']
 deploy-unsafe:
     robotpy deploy --skip-tests
-    
+
+
+# Initializes the project
+[working-directory: './']
+init:
+    cd ./packages/robot && \
+    python -m venv venv
+
+    cd ./packages/robot && \
+    ./venv/bin/pip3 install -r ./requirements.txt
+
+    echo "Project Initialized"    
