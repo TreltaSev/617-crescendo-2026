@@ -3,12 +3,12 @@
 # Installs requirements and uploads code to the robot and executes it immediately
 [working-directory: './packages/robot']
 deploy:
-    robotpy deploy
+    ./venv/bin/python -m robotpy deploy
 
 # Similar to the deploy command but skips tests
 [working-directory: './packages/robot']
 deploy-unsafe:
-    robotpy deploy --skip-tests
+    ./venv/bin/python -m robotpy deploy --skip-tests
 
 
 # Initializes the project
