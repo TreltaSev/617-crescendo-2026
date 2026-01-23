@@ -33,8 +33,8 @@ class AutoDrive(Command):
         value). The X axis is scaled down so the rotation is more easily
         controllable.
         """
-        # self.drive_system.drive_arcade(self.x_speed, self.z_rotation)
+        self.drive_system.drive_arcade(self.x_speed, self.z_rotation)
 
     def end(self, interrupted: bool):
         """Called once the command ends or is interrupted."""
-        # self.drive_system.drive_arcade(0, 0)
+        self.drive_system.drive_arcade(0, 0)

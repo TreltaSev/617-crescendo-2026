@@ -37,4 +37,4 @@ class Drive(Command):
 
     def end(self, interrupted: bool):
         """Called once the command ends or is interrupted."""
-        # self.drive_system.drive_arcade(0, 0)
+        self.drive_system.drive_arcade(0, 0)
