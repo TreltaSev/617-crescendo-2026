@@ -11,7 +11,8 @@ if TYPE_CHECKING:
 
 # === Constants ===
 from utils.constants.fuel_constants import (
-    LAUNCHING_LAUNCHER_VOLTAGE
+    LAUNCHING_LAUNCHER_VOLTAGE,
+    SPIN_UP_FEEDER_VOLTAGE
 )
 
 
