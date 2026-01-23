@@ -46,3 +46,7 @@ While you can manually run robotpy using python, there are some scripts that can
 ```bash
 just -l
 ```
+
+## Documentation References
+- [subsystem](https://robotpy.readthedocs.io/projects/commands-v2/en/stable/commands2/Subsystem.html#subsystem)
+- [command](https://robotpy.readthedocs.io/projects/commands-v2/en/stable/commands2/Command.html#command)
