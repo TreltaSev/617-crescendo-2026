@@ -3,7 +3,8 @@ from __future__ import annotations
 # === Types ===
 from commands2 import Command, SequentialCommandGroup
 
-from commands import AutoDrive, Launch
+from commands.autodrive import AutoDrive
+from commands.launch import Launch
 
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:

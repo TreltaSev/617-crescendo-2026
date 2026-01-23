@@ -19,7 +19,11 @@ from utils.constants.operator_constants import (
 )
 
 # === Commands ===
-from commands import (Intake, ExampleAuto, LaunchSequence, Eject, Drive)
+from commands.intake import Intake
+from commands.example_auto import ExampleAuto
+from commands.launch_sequence import LaunchSequence
+from commands.eject import Eject
+from commands.drive import Drive
 
 
 class RobotContainer:
