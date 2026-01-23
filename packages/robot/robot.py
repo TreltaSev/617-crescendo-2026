@@ -17,6 +17,7 @@ class MainRobot(wpilib.TimedRobot):
         # and put our
         # autonomous chooser on the dashboard.
         self.robot_container = RobotContainer()
+        self.autonomous_command = self.robot_container.get_autonomous_command()
 
     def robotPeriodic(self) -> None:
         """
@@ -47,7 +48,6 @@ class MainRobot(wpilib.TimedRobot):
 
     def autonomousInit(self):
         """Ran once each time the robot enters autonomous mode."""
-        self.autonomous_command = self.robot_container.get_autonomous_command()
 
         if not self.autonomous_command:
             CommandScheduler.getInstance().schedule(self.autonomous_command)
