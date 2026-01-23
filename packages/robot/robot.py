@@ -1,5 +1,7 @@
 import wpilib
-import wpilib.drive
+
+from commands2 import CommandScheduler
+from robot_container import RobotContainer
 
 
 class MainRobot(wpilib.TimedRobot):
@@ -11,66 +13,55 @@ class MainRobot(wpilib.TimedRobot):
     def __init__(self, period: float = 0.02) -> None:
         super().__init__(period)
 
-        # Initialize left and right example drives
-        self.leftDrive = wpilib.PWMSparkMax(channel=0)
-        self.rightDrive = wpilib.PWMSparkMax(channel=1)
-        self.__drives: list[wpilib.PWMSparkMax] = [
-            self.leftDrive, self.rightDrive]
+        # Instantiate our RobotContainer. This will perform all our button bindings,
+        # and put our
+        # autonomous chooser on the dashboard.
+        self.robot_container = RobotContainer()
 
-        # Group up the left and right drives
-        self.robotDrive = wpilib.drive.DifferentialDrive(*self.__drives)
-
-        # Setup example controller
-        self.controller = wpilib.XboxController(port=0)
-
-        # Initialize global timer, doesn't start it
-        self.timer = wpilib.Timer()
-
-        # === BELOW IS CTRL+C CTRL+V ===
-        # We need to invert one side of the drivetrain so that positive voltages
-        # result in both sides moving forward. Depending on how your robot's
-        # gearbox is constructed, you might have to invert the left side instead.
-        # ==============================
-        self.rightDrive.setInverted(True)
-
-    def autonomousInit(self):
-        """Ran once each time the robot enters autonomous mode."""
-        self.timer.restart()
-
-    def autonomousPeriodic(self) -> None:
-        """Called periodically during autonomous"""
-        pass
+    def robotPeriodic(self) -> None:
+        """
+        Runs the Scheduler. This is responsible for polling buttons, adding
+        newly-scheduled
+        commands, running already-scheduled commands, removing finished or
+        interrupted commands,
+        and running subsystem periodic() methods. This must be called from the
+        robot's periodic
+        block in order for anything in the Command-based framework to work.
+        """
+        CommandScheduler.getInstance().run()
 
     # ====== TELOPERATED OPERATIONS ======
 
     def teleopInit(self) -> None:
         """Called once each time the robot enteres "teloperated" mode"""
-        pass
+        if self.autonomous_command:
+            self.autonomous_command.cancel()
 
     def teleopPeriodic(self) -> None:
         """Called periodically during teleoperated mode."""
-
-        # This is an example arcade drive
-        self.robotDrive.arcadeDrive(
-            -self.controller.getLeftY(), -self.controller.getRightX()
-        )
+        pass
 
     # ====================================
 
     # ====== AUTONOMOUS LOGIC ======
 
-    def autonomousInit(self) -> None:
-        """
-        Run once each time the robot enters "autonomous" mode
-        """
-        self.timer.restart()
+    def autonomousInit(self):
+        """Ran once each time the robot enters autonomous mode."""
+        self.autonomous_command = self.robot_container.get_autonomous_command()
+
+        if not self.autonomous_command:
+            CommandScheduler.getInstance().schedule(self.autonomous_command)
+
+    def autonomousPeriodic(self) -> None:
+        """Called periodically during autonomous"""
+        pass
 
     # ==============================
 
     # ====== TESTING LOGIC BELOW ======
 
     def testInit(self) -> None:
-        return super().testInit()
+        CommandScheduler.getInstance().cancelAll()
 
     def testPeriodic(self) -> None:
         """Periodic code for test mode should go here."""
