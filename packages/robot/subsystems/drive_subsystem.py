@@ -26,8 +26,6 @@ class DriveSubsystem(Subsystem):
 
     def __init__(self) -> None:
 
-        motor_types = [SparkLowLevel.MotorType.kBrushed, SparkLowLevel.MotorType.kBrushless]
-
         # Initialize brushed motors for drives
         self.left_leader = rev.SparkMax(deviceID=LEFT_LEADER_ID, type=BRUSHLESS_MOTOR)
         self.left_follower = rev.SparkMax(deviceID=LEFT_FOLLOWER_ID, type=BRUSHLESS_MOTOR)
