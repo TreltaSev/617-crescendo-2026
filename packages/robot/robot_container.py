@@ -10,7 +10,6 @@ from commands2.button.commandxboxcontroller import CommandXboxController
 # === Types ===
 from typing import TYPE_CHECKING
 
-from packages.robot.commands.drive import Drive
 from subsystems import DriveSubsystem, FuelSubsystem
 
 # === Constants ===
@@ -20,7 +19,7 @@ from utils.constants.operator_constants import (
 )
 
 # === Commands ===
-from commands import (Intake, ExampleAuto, LaunchSequence, Eject)
+from commands import (Intake, ExampleAuto, LaunchSequence, Eject, Drive)
 
 
 class RobotContainer:
