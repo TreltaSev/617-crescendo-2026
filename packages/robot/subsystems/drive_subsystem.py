@@ -62,6 +62,7 @@ class DriveSubsystem(Subsystem):
         self.left_leader.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters)
 
     def periodic(self) -> None:
+        """This method will be called once per scheduler run"""
         pass
 
     def drive_arcade(self, x_speed: float, z_rotation: float) -> None:
