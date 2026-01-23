@@ -14,6 +14,7 @@ from utils.constants.fuel_constants import (
     LAUNCHING_LAUNCHER_VOLTAGE
 )
 
+
 class SpinUp(Command):
 
     def __init__(self, fuel_system: FuelSubsystem):
@@ -30,8 +31,8 @@ class SpinUp(Command):
         appropriate values for intaking
         """
         self.fuel_system.set_intake_launcher_roller(
-                SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_VOLTAGE));
-        self.fuel_system.set_feeder_roller(SmartDashboard.getNumber("Launching spin-up feeder value", SPIN_UP_FEEDER_VOLTAGE));
+            SmartDashboard.getNumber("Launching launcher roller value", LAUNCHING_LAUNCHER_VOLTAGE))
+        self.fuel_system.set_feeder_roller(SmartDashboard.getNumber("Launching spin-up feeder value", SPIN_UP_FEEDER_VOLTAGE))
 
     def execute(self):
         """
