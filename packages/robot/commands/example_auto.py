@@ -17,6 +17,7 @@ class ExampleAuto(SequentialCommandGroup):
     """
 
     def __init__(self, drive_system: DriveSubsystem, fuel_system: FuelSubsystem, *commands: Command):
+        super().__init__()
         self.addCommands(
             AutoDrive(drive_system, 0.5, 0.0).withTimeout(.25),
             Launch(fuel_system),

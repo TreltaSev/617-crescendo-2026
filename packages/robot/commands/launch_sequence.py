@@ -22,6 +22,7 @@ class LaunchSequence(SequentialCommandGroup):
     """
 
     def __init__(self, fuel_system: FuelSubsystem, *commands: Command):
+        super().__init__()
         self.addCommands(
             SpinUp(fuel_system).withTimeout(SPIN_UP_SECONDS),
             Launch(fuel_system),
